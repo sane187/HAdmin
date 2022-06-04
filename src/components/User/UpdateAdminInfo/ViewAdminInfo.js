@@ -44,12 +44,15 @@ const ViewAdminInfo = (props) => {
   const [access, setAccess] = useState([]);
   const params = useParams();
   useEffect(() => {
+    dispatch(fetchSingleAdmin(params.admin_id));
     dispatch(getBranches());
     dispatch(getAdminRoles());
-    dispatch(fetchSingleAdmin(params.admin_id));
     editPermissions();
-    setDefaultData();
   }, []);
+
+  useEffect(() => {
+    setDefaultData();
+  }, [single_admin]);
 
   const editPermissions = () => {
     if (login && login.login.status === "success") {

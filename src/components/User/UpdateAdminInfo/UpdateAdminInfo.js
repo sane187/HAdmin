@@ -52,8 +52,11 @@ const UpdateAdminInfo = (props) => {
     dispatch(getAdminRoles());
     dispatch(fetchSingleAdmin(params.admin_id));
     editPermissions();
-    setDefaultData();
   }, []);
+
+  useEffect(() => {
+    setDefaultData();
+  }, [single_admin]);
 
   const editPermissions = () => {
     if (login && login.login.status === "success") {

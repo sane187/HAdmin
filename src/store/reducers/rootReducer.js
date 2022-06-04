@@ -35,12 +35,15 @@ import {
   OrdersPaginationReducer,
   RolesReducer,
 } from "./Employee/EmployeeReducer";
-import EmployeePagination from "../../components/Employees/EmployeePagination";
 import authReducer from "./loginReducer";
 import { get_admin_rolesReducer } from "./User/UserReducer";
-import { get_product_branch } from "../actionCreators/Catalog/Catalog";
 import { get_all_adminsReducer } from "./Admins/AdminsReducer";
 import { single_adminReducer } from "./Admins/singleAdminReducer";
+import {
+  AllOrdersPaginationReducer,
+  ordersReducer,
+  FilteredCustomersReducer,
+} from "./Orders/ordersReducer";
 const rootReducer = combineReducers({
   login: authReducer,
   franchise: FranchiseReducer,
@@ -55,6 +58,10 @@ const rootReducer = combineReducers({
   // admin vars
   admins: get_all_adminsReducer,
   single_admin: single_adminReducer,
+  // orders vars
+  orders: ordersReducer,
+  all_orders_page: AllOrdersPaginationReducer,
+  filtered_customers: FilteredCustomersReducer,
   // Dashboard vars
   dashboard_card: dashboard_card,
   dashboard_filters: dashboard_filters,
