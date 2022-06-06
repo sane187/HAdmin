@@ -129,7 +129,7 @@ const AllOrders = (props) => {
   };
 
   const setDisplayOrders = () => {
-    if (orders.data.status === "success") {
+    if (orders.data && orders.data.status === "success") {
       const displayableOrdersClone = orders.data.data.map((o) => {
         let order_items = "";
         o.order_items.forEach((oi) => {
