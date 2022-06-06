@@ -439,7 +439,7 @@ const AllOrders = (props) => {
 
   const pageOptions = {
     sizePerPage: 10,
-    totalSize: orders.data.total_orders_count, // replace later with size(customers),
+    totalSize: orders.data ? orders.data.total_orders_count : 0, // replace later with size(customers),
     custom: true,
   };
 
@@ -542,7 +542,9 @@ const AllOrders = (props) => {
                               <Row className="mt-3">
                                 <OrderPagination
                                   pageNum={Math.ceil(
-                                    orders.data.total_orders_count / 10
+                                    (orders.data
+                                      ? orders.data.total_orders_count
+                                      : 0) / 10
                                   )}
                                   onPageChange={showFilteredOrders}
                                 />

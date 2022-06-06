@@ -48,6 +48,7 @@ const AddAdminmain = (props) => {
     { Module_Name: "User", Read: false, Write: false },
     { Module_Name: "Coupons", Read: false, Write: false },
     { Module_Name: "Orders", Read: false, Write: false },
+    { Module_Name: "Groups", Read: false, Write: false },
   ]);
   useEffect(() => {
     dispatch(getBranches());
