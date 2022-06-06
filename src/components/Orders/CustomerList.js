@@ -15,7 +15,10 @@ const CustomerList = ({ showFilteredCustomers }) => {
   const filtered_customers = useSelector((state) => state.filtered_customers);
 
   useEffect(() => {
-    if (filtered_customers.data.status === "success") {
+    if (
+      filtered_customers.data &&
+      filtered_customers.data.status === "success"
+    ) {
       const customers = filtered_customers.data.data.map((c) => ({
         ...c,
         shipping_address: `${c.shipping_address.address}, ${c.shipping_address.pincode} `,
@@ -151,7 +154,9 @@ const CustomerList = ({ showFilteredCustomers }) => {
 
   const pageOptions = {
     sizePerPage: 10,
-    totalSize: filtered_customers.total_customer_count, // replace later with size(customers),
+    totalSize: filtered_customers.data
+      ? filtered_customers.data.total_customer_count
+      : 0, // replace later with size(customers),
     custom: true,
   };
 
@@ -191,7 +196,9 @@ const CustomerList = ({ showFilteredCustomers }) => {
               <Row className="mt-3">
                 <OrderPagination
                   pageNum={Math.ceil(
-                    filtered_customers.data.total_customer_count / 10
+                    (filtered_customers.data
+                      ? filtered_customers.data.total_customer_count
+                      : 0) / 10
                   )}
                   onPageChange={showFilteredCustomers}
                 />
