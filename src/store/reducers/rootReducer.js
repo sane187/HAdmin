@@ -44,6 +44,8 @@ import {
   ordersReducer,
   FilteredCustomersReducer,
 } from "./Orders/ordersReducer";
+import { groupsReducer } from "./Groups/groupsReducer";
+
 const rootReducer = combineReducers({
   login: authReducer,
   franchise: FranchiseReducer,
@@ -58,6 +60,8 @@ const rootReducer = combineReducers({
   // admin vars
   admins: get_all_adminsReducer,
   single_admin: single_adminReducer,
+  // groups vars
+  groups: groupsReducer,
   // orders vars
   orders: ordersReducer,
   all_orders_page: AllOrdersPaginationReducer,

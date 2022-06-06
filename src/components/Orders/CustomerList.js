@@ -5,7 +5,7 @@ import ToolkitProvider from "react-bootstrap-table2-toolkit/dist/react-bootstrap
 import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import OrderPagination from "./OrderPagination";
 import { Link } from "react-router-dom";

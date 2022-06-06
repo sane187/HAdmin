@@ -21,10 +21,12 @@ import {
 import OrderPagination from "./OrderPagination";
 import { Link } from "react-router-dom";
 import CustomerList from "./CustomerList";
+import AddCustomerToModal from "./AddCustomerToGroupModal";
 
 const AllOrders = (props) => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
+  const filtered_customers = useSelector((state) => state.filtered_customers);
   const dashboard_filters = useSelector((state) => state.dashboard_filters);
 
   const [orderListVisible, setOrderListVisible] = useState(true);
@@ -49,10 +51,12 @@ const AllOrders = (props) => {
   const [branchOptions, setBranchOptions] = useState([]);
   const [currbranch, setCurrBranch] = useState({});
   const [currfranchise, setCurrFran] = useState({});
+  const [addCustomerToGrpModal, setAddCustomerToGrpModal] = useState(false);
 
   useEffect(() => {
     setPageNo(1);
     setDefaultBranchFranchise();
+    dispatch(fetchCustomerList(1, getFilterQuery()));
   }, []);
 
   useEffect(() => {
@@ -500,9 +504,21 @@ const AllOrders = (props) => {
                     <Button
                       className="btn btn-warning mb-3 "
                       onClick={() => showFilteredCustomers(1)}
+                      style={{ marginRight: "1rem" }}
                     >
                       Show Customer List
                     </Button>
+                    <Button
+                      className="btn btn-warning mb-3 "
+                      onClick={() => setAddCustomerToGrpModal(true)}
+                    >
+                      Add Customers to Group
+                    </Button>
+                    <AddCustomerToModal
+                      show={addCustomerToGrpModal}
+                      close={() => setAddCustomerToGrpModal(false)}
+                      queryString={getFilterQuery()}
+                    />
                   </div>
                   {orderListVisible ? (
                     <PaginationProvider
