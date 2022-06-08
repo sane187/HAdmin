@@ -102,6 +102,14 @@ function App() {
                 </Protected>
               }
             ></Route>
+            {/* <Route
+              path="/groups/*"
+              element={
+                <Protected>
+                  <Orders sideToggle={sideToggle} />
+                </Protected>
+              }
+            ></Route> */}
             <Route
               path="/orders/*"
               element={

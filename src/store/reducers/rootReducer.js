@@ -43,6 +43,7 @@ import {
   AllOrdersPaginationReducer,
   ordersReducer,
   FilteredCustomersReducer,
+  orderReducer,
 } from "./Orders/ordersReducer";
 import { groupsReducer } from "./Groups/groupsReducer";
 
@@ -63,6 +64,7 @@ const rootReducer = combineReducers({
   // groups vars
   groups: groupsReducer,
   // orders vars
+  order: orderReducer,
   orders: ordersReducer,
   all_orders_page: AllOrdersPaginationReducer,
   filtered_customers: FilteredCustomersReducer,

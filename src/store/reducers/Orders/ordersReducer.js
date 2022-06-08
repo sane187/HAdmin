@@ -7,6 +7,29 @@ export const ordersReducer = (state = "", action) => {
   }
 };
 
+export const orderReducer = (state = "", action) => {
+  switch (action.type) {
+    case "GET_ORDER":
+      return action.order;
+    case "UPDATE_ORDER":
+      return action.order;
+    case "UPDATE_ORDER_ITEM":
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          order_items: state.data.order_items.map((oi) =>
+            oi.product_id === action.order.data.product_id
+              ? action.order.data
+              : oi
+          ),
+        },
+      };
+    default:
+      return state;
+  }
+};
+
 export const AllOrdersPaginationReducer = (state = "", action) => {
   switch (action.type) {
     case "SET_ALLORDERS_PAGE":

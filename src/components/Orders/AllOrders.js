@@ -168,11 +168,20 @@ const AllOrders = (props) => {
       >
         <Link
           exact="true"
-          to="#"
-          onClick={(e) => e.preventDefault()}
+          to={`/orders/viewOrder/${row.order_id}`}
+          // onClick={(e) => e.preventDefault()}
           className="btn btn-sm btn-warning"
         >
           View
+        </Link>
+        <Link
+          exact="true"
+          to={`/orders/editOrder/${row.order_id}`}
+          // onClick={(e) => e.preventDefault()}
+          className="btn btn-sm btn-warning"
+          style={{ marginLeft: "0.6rem" }}
+        >
+          Edit
         </Link>
       </div>
     );
