@@ -18,7 +18,10 @@ const OrdersDashboard = (props) => {
         </Row>
         <Row></Row>
         <Row>
-          <AllOrders />
+          <AllOrders
+            viewPermission={props.viewPermission}
+            editPermission={props.editPermission}
+          />
         </Row>
       </Container>
     );

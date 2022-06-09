@@ -169,7 +169,7 @@ const AllOrders = (props) => {
         <Link
           exact="true"
           to={`/orders/viewOrder/${row.order_id}`}
-          // onClick={(e) => e.preventDefault()}
+          onClick={(e) => (!props.viewPermission ? e.preventDefault() : "")}
           className="btn btn-sm btn-warning"
         >
           View
@@ -177,7 +177,7 @@ const AllOrders = (props) => {
         <Link
           exact="true"
           to={`/orders/editOrder/${row.order_id}`}
-          // onClick={(e) => e.preventDefault()}
+          onClick={(e) => (!props.editPermission ? e.preventDefault() : "")}
           className="btn btn-sm btn-warning"
           style={{ marginLeft: "0.6rem" }}
         >

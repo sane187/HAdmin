@@ -21,8 +21,12 @@ const CustomerList = ({ showFilteredCustomers }) => {
     ) {
       const customers = filtered_customers.data.data.map((c) => ({
         ...c,
-        shipping_address: `${c.shipping_address.address}, ${c.shipping_address.pincode} `,
-        billing_address: `${c.billing_address.address}, ${c.billing_address.pincode} `,
+        shipping_address: `${
+          c.shipping_address ? c.shipping_address.address : ""
+        }, ${c.shipping_address ? c.shipping_address.pincode : ""} `,
+        billing_address: `${
+          c.billing_address ? c.billing_address.address : ""
+        }, ${c.billing_address ? c.billing_address.pincode : ""} `,
       }));
       setDisplayableCustomers(customers);
     }
