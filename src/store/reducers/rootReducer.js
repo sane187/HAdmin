@@ -45,7 +45,12 @@ import {
   FilteredCustomersReducer,
   orderReducer,
 } from "./Orders/ordersReducer";
-import { groupsReducer } from "./Groups/groupsReducer";
+import {
+  groupReducer,
+  groupsReducer,
+  GroupCustomersPaginationReducer,
+  SearchCustomerReducer,
+} from "./Groups/groupsReducer";
 
 const rootReducer = combineReducers({
   login: authReducer,
@@ -63,11 +68,14 @@ const rootReducer = combineReducers({
   single_admin: single_adminReducer,
   // groups vars
   groups: groupsReducer,
+  group: groupReducer,
+  group_customer_page: GroupCustomersPaginationReducer,
   // orders vars
   order: orderReducer,
   orders: ordersReducer,
   all_orders_page: AllOrdersPaginationReducer,
   filtered_customers: FilteredCustomersReducer,
+  search_customer: SearchCustomerReducer,
   // Dashboard vars
   dashboard_card: dashboard_card,
   dashboard_filters: dashboard_filters,

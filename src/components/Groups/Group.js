@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Routes } from "react-router-dom";
-import { Route } from "react-router-dom";
-import ViewOrder from "../Orders/ViewOrder";
 import { useSelector } from "react-redux";
+import AllGroups from "./AllGroups";
+import { Container, Row, Col } from "react-bootstrap";
+import { Route, Routes } from "react-router-dom";
+import SingleGroup from "./SingleGroup";
 
-const Orders = (props) => {
+const Group = (props) => {
   const login = useSelector((state) => state.login);
   const [viewPermission, setViewPermission] = useState(false);
   const [editPermission, setEditPermission] = useState(false);
@@ -26,21 +27,41 @@ const Orders = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ViewOrder
-              viewPermission={viewPermission}
-              editPermission={editPermission}
-              sideToggle={props.sideToggle}
-            />
-          }
-        />
-      </Routes>
-    </React.Fragment>
+    <Container
+      fluid
+      className={props.sideToggle === true ? "closeDash" : "openDash"}
+      style={{ paddingTop: "95px", backgroundColor: "#F1F5F7" }}
+    >
+      <Row>
+        <Col lg={9} sm={6} xs={12} className="dash-head">
+          Groups Dashboard
+        </Col>
+      </Row>
+      <Row></Row>
+      <Row>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <AllGroups
+                viewPermission={viewPermission}
+                editPermission={editPermission}
+              />
+            }
+          />
+          <Route
+            path="/:customer_group_name"
+            element={
+              <SingleGroup
+                viewPermission={viewPermission}
+                editPermission={editPermission}
+              />
+            }
+          />
+        </Routes>
+      </Row>
+    </Container>
   );
 };
 
-export default Orders;
+export default Group;

@@ -27,6 +27,7 @@ import { getEmployeeRoles } from "./store/actionCreators/Employees/EmployeeActio
 import Protected from "./Protected";
 import { getAdminRoles } from "./store/actionCreators/User/UserAction";
 import Orders from "./components/Orders/orders";
+import Group from "./components/Groups/Group";
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
   const handle = useFullScreenHandle();
@@ -115,6 +116,14 @@ function App() {
               element={
                 <Protected>
                   <Orders sideToggle={sideToggle} />
+                </Protected>
+              }
+            ></Route>
+            <Route
+              path="/groups/*"
+              element={
+                <Protected>
+                  <Group sideToggle={sideToggle} />
                 </Protected>
               }
             ></Route>

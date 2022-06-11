@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Header from "./header";
@@ -227,6 +227,17 @@ const Sidebar = (props) => {
               <SubMenu
                 open={open.open7}
                 onOpenChange={() => openChange("open7")}
+                title="Groups"
+                icon={<RiBuilding2Fill />}
+              >
+                <MenuItem>
+                  All Groups
+                  <NavLink to="/groups" />
+                </MenuItem>
+              </SubMenu>
+              <SubMenu
+                open={open.open8}
+                onOpenChange={() => openChange("open8")}
                 title="User"
                 icon={<RiAdminFill />}
               >
