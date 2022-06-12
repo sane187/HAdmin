@@ -46,6 +46,11 @@ import {
   orderReducer,
 } from "./Orders/ordersReducer";
 import {
+  couponsReducer,
+  CouponsPaginationReducer,
+  couponReducer,
+} from "./Coupons/CouponsReducer";
+import {
   groupReducer,
   groupsReducer,
   GroupCustomersPaginationReducer,
@@ -70,6 +75,10 @@ const rootReducer = combineReducers({
   groups: groupsReducer,
   group: groupReducer,
   group_customer_page: GroupCustomersPaginationReducer,
+  // Coupon vars
+  coupons: couponsReducer,
+  coupon: couponReducer,
+  coupons_page: CouponsPaginationReducer,
   // orders vars
   order: orderReducer,
   orders: ordersReducer,

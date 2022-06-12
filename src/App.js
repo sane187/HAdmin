@@ -28,6 +28,7 @@ import Protected from "./Protected";
 import { getAdminRoles } from "./store/actionCreators/User/UserAction";
 import Orders from "./components/Orders/orders";
 import Group from "./components/Groups/Group";
+import Coupon from "./components/Coupons/Coupon";
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
   const handle = useFullScreenHandle();
@@ -124,6 +125,14 @@ function App() {
               element={
                 <Protected>
                   <Group sideToggle={sideToggle} />
+                </Protected>
+              }
+            ></Route>
+            <Route
+              path="/coupons/*"
+              element={
+                <Protected>
+                  <Coupon sideToggle={sideToggle} />
                 </Protected>
               }
             ></Route>

@@ -17,7 +17,7 @@ const Orders = (props) => {
   const [branchObj, setBranchObj] = useState({});
   const [branchArray, setBranchArray] = useState([]);
 
-  const convertEmpArrayToObj = () => {
+  const convertArrayToObj = () => {
     if (employees.data && employees.data.status === "success") {
       const emps = {};
       employees.data.data.forEach((e) => {
@@ -38,8 +38,8 @@ const Orders = (props) => {
 
   useEffect(() => {
     editPermissions();
-    convertEmpArrayToObj();
-  }, [employees]);
+    convertArrayToObj();
+  }, [employees, branch]);
 
   const editPermissions = () => {
     if (login && login.login.status === "success") {

@@ -238,6 +238,21 @@ const Sidebar = (props) => {
               <SubMenu
                 open={open.open8}
                 onOpenChange={() => openChange("open8")}
+                title="Coupons"
+                icon={<RiBuilding2Fill />}
+              >
+                <MenuItem>
+                  All Coupons
+                  <NavLink to="/coupons" />
+                </MenuItem>
+                <MenuItem>
+                  Add New Coupon
+                  <NavLink to="/coupons/addCoupon" />
+                </MenuItem>
+              </SubMenu>
+              <SubMenu
+                open={open.open9}
+                onOpenChange={() => openChange("open9")}
                 title="User"
                 icon={<RiAdminFill />}
               >
