@@ -187,7 +187,6 @@ const SingleGroup = () => {
                               new_val: groupName,
                             })
                           );
-                          navigate("/groups");
                         }}
                       >
                         Update Group Name

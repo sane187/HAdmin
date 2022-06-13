@@ -5,7 +5,7 @@ export const groupsReducer = (state = "", action) => {
     case "ADD_NEW_GROUP":
       return {
         ...state,
-        data: { ...state.data, data: [...state.data.data] },
+        data: { ...state.data, data: [...state.data.data, action.group] },
       };
     case "DELETE_SINGLE_GROUP":
       return {

@@ -279,7 +279,7 @@ export const addNewGroup = (customer_group_name) => {
       .then((res) => {
         dispatch({
           type: "ADD_NEW_GROUP",
-          group: res.data,
+          group: { customer_group_name },
         });
         if (res.data.status === "success")
           toast.success(`successFully Added Group`, {
