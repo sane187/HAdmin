@@ -212,8 +212,10 @@ const SingleGroup = () => {
                 <Row>
                   <GroupCustomerPagination
                     pageNum={
-                      group.data.total_customers
-                        ? Math.ceil(group.data.total_customers / 10)
+                      group.data
+                        ? group.data.total_customers
+                          ? Math.ceil(group.data.total_customers / 10)
+                          : 0
                         : 0
                     }
                   />

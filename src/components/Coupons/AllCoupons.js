@@ -330,8 +330,10 @@ const AllCoupons = (props) => {
 
   const pageOptions = {
     sizePerPage: 10,
-    totalSize: coupons.data.total_coup_count
+    totalSize: coupons.data
       ? coupons.data.total_coup_count
+        ? coupons.data.total_coup_count
+        : 0
       : 0, // replace later with size(customers),
     custom: true,
   };
@@ -405,7 +407,11 @@ const AllCoupons = (props) => {
                           <Row className="mt-3">
                             <CouponPagination
                               pageNum={Math.ceil(
-                                coupons.data.total_coup_count / 10
+                                coupons.data
+                                  ? coupons.data.total_coup_count
+                                    ? coupons.data.total_coup_count
+                                    : 0
+                                  : 0
                               )}
                             />
                           </Row>
