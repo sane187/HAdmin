@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Modal, Row, Form, Button, Col } from "react-bootstrap";
 import { toast } from "react-toastify";
+import {
+  addCatToBranch,
+  getSingleBranch,
+} from "../../../store/actionCreators/Branch/BranchAction";
 
 const AddcategoryModal = ({ show, close, categoryObj, branch_id }) => {
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
   const products = useSelector((state) => state.products);
   const [displayableCategories, setDisplayableCategories] = useState([]);
@@ -34,6 +39,7 @@ const AddcategoryModal = ({ show, close, categoryObj, branch_id }) => {
           items_available: 0,
           product_name: p.product_name,
           checked: false,
+          price: p.price,
         });
       });
       setDisplayableProducts(dp);
@@ -64,6 +70,21 @@ const AddcategoryModal = ({ show, close, categoryObj, branch_id }) => {
         theme: "colored",
       });
     } else {
+      dispatch(
+        addCatToBranch({
+          branch_id,
+          category_list_id: selectedCategory.value,
+          product_list: displayableProducts
+            .filter((p) => p.checked !== false)
+            .map((p) => ({
+              id: p.id,
+              price: p.price,
+              items_available: p.items_available,
+            })),
+        })
+      );
+
+      dispatch(getSingleBranch(branch_id));
     }
   };
 
@@ -131,7 +152,7 @@ const AddcategoryModal = ({ show, close, categoryObj, branch_id }) => {
             <ul>{displayProducts()}</ul>
           </div>
         </Row>
-        <Button type="submit" className="btn btn-warning">
+        <Button onClick={onSubmit} type="submit" className="btn btn-warning">
           Submit
         </Button>
       </Modal.Body>

@@ -34,6 +34,37 @@ export const getSingleBranch = (branch_id) => {
   };
 };
 
+export const deleteCategoryFromBranch = (category_id) => {
+  return (dispatch, getState) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}api/v1/admin/franchise/delete_cat_branch?category_id=${category_id}`
+      )
+      .then((res) => {
+        dispatch({
+          type: "DELETE_CATEGORY_FROM_BRANCH",
+          category_id,
+        });
+        toast.success(`Category Deleted successfully`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 4000);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
+};
+
 export const deleteBranch = (branch_id) => {
   return (dispatch, getState) => {
     axios
@@ -125,6 +156,37 @@ export const addNewBranch = (branch) => {
       })
       .catch((err) => {
         console.log("error", err);
+      });
+  };
+};
+
+export const addCatToBranch = (category) => {
+  console.log(category);
+  return (dispatch, getState) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}api/v1/admin/franchise/add_cat_branch`,
+        category
+      )
+      .then((res) => {
+        if (res.data.prod) {
+          toast.success(`Category Added successfully`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          dispatch({
+            type: "ADD_CATEGORY_TO_BRANCH",
+          });
+          setTimeout(() => {
+            window.location.reload(false);
+          }, 4000);
+        }
       });
   };
 };

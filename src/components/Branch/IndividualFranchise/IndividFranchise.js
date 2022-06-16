@@ -246,6 +246,7 @@ const IndividFranchise = (props) => {
                         show={categoryModal}
                         close={() => setCategoryModal(false)}
                         categoryObj={categoryObj}
+                        branch_id={branchData.data.branch_id}
                       />
                     </div>
                   </Card.Body>
