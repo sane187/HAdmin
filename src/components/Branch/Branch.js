@@ -61,7 +61,7 @@ const Branch = (props) => {
           }
         />
         <Route
-          path="/Franchise"
+          path="/Franchise/:franchise_id"
           element={
             <IndividFranchise
               franchise={franchise}

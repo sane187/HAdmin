@@ -18,6 +18,25 @@ export const fetchCustomers = (page, franchise, branch, city) => {
       });
   };
 };
+
+export const fetchSingleCustomer = (customer_no) => {
+  return (dispatch, getState) => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}api/v1/admin/customer/fetch_single_customer?customer_no=${customer_no}`
+      )
+      .then((customer) => {
+        dispatch({
+          type: "GET_SINGLE_CUSTOMER",
+          customer,
+        });
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
+};
+
 export const CustomerDashboardAction = (franchise, branch, month, year) => {
   return (dispatch, getState) => {
     axios
@@ -200,6 +219,7 @@ export const addNewCustomer = (OB) => {
         gender: OB.gender,
         branch: OB.branch,
         branch_id: OB.branch_id,
+        customer_type: OB.customer_type,
         shipping_address: {
           address: OB.shipping_address.address,
           pincode: OB.shipping_address.pincode,
@@ -226,4 +246,36 @@ export const addNewCustomer = (OB) => {
     .catch((err) => {
       console.log("error", err);
     });
+};
+
+export const updateCustomerData = (OB) => {
+  return (dispatch, getSate) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}api/v1/admin/customer/update_single_customer`,
+        OB
+      )
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_CUSTOMER_DATA",
+          customer: OB,
+        });
+        toast.success(`SuccessFully Updated Customer`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 4000);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
 };

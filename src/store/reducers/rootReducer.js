@@ -25,6 +25,7 @@ import {
   fetchCustomersReducer,
   MostOrderPaginationReducer,
   OrderAnalyticsGraphReducer,
+  singleCustomerReducer,
 } from "./Customer/customerReducer";
 import {
   EmployeeOrdersTakenReducer,
@@ -50,6 +51,8 @@ import {
   CouponsPaginationReducer,
   couponReducer,
 } from "./Coupons/CouponsReducer";
+import { CustomerRolesReducer } from "./Customer/customerRolesReducer";
+import SingleFranchiseReducer from "./Franchise/SingleFranchiseReducer";
 import {
   groupReducer,
   groupsReducer,
@@ -60,6 +63,7 @@ import {
 const rootReducer = combineReducers({
   login: authReducer,
   franchise: FranchiseReducer,
+  single_franchise: SingleFranchiseReducer,
   branch: BranchReducer,
   products: ProductsReducer,
   addons: AddonsReducer,
@@ -91,6 +95,8 @@ const rootReducer = combineReducers({
   dashboard_revenue: dashboard_revenue,
   dashboard_sales_pie: dashboard_sales_pie,
   //  Customer vars
+  customer_roles: CustomerRolesReducer,
+  single_customer: singleCustomerReducer,
   customers: fetchCustomersReducer,
   customer_dashboard: CustomerDashboardReducer,
   customer_analytics_pie: CustomerAnalyticsPieReducer,

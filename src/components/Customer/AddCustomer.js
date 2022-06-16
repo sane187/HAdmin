@@ -13,10 +13,12 @@ import { getBranches } from "../../store/actionCreators/Branch/BranchAction";
 import ReactMultiselectCheckboxes from "react-multiselect-checkboxes/lib/ReactMultiselectCheckboxes";
 import { addNewCustomer } from "../../store/actionCreators/Customers/CustomerAction";
 import Unauthorized from "../unauthorized";
+import Select from "react-select";
 
 const AddCustomer = (props) => {
   const dispatch = useDispatch();
   const branch = useSelector((state) => state.branch);
+  const customer_roles = useSelector((state) => state.customer_roles);
   const [customer, setCustomer] = useState({
     first_name: "",
     last_name: "",
@@ -36,6 +38,7 @@ const AddCustomer = (props) => {
       address: "",
       pincode: "",
     },
+    customer_type: "",
   });
 
   const displayBranches = () => {
@@ -175,6 +178,34 @@ const AddCustomer = (props) => {
                           {displayBranches()}
                         </DropdownButton>
                         <span className="ms-3 p-2">{customer.branch}</span>
+                      </div>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="mb-3 p-2 ">
+                      <label className="form-label">Customer Type</label>
+                      <div className="">
+                        <Select
+                          options={
+                            customer_roles.data
+                              ? customer_roles.data.status === "success"
+                                ? customer_roles.data.all_customer_roles.map(
+                                    (cr) => ({
+                                      label: cr.customer_type,
+                                      value: cr.customer_type,
+                                    })
+                                  )
+                                : []
+                              : []
+                          }
+                          value={{
+                            label: customer.customer_type,
+                            value: customer.customer_type,
+                          }}
+                          onChange={(e) =>
+                            setCustomer({ ...customer, customer_type: e.value })
+                          }
+                        />
                       </div>
                     </div>
                   </Col>

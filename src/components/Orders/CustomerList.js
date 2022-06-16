@@ -5,14 +5,16 @@ import ToolkitProvider from "react-bootstrap-table2-toolkit/dist/react-bootstrap
 import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
 import OrderPagination from "./OrderPagination";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { CustomerOrderHistory } from "../../store/actionCreators/Customers/CustomerAction";
 
 const CustomerList = ({ showFilteredCustomers }) => {
   const [displayableCustomers, setDisplayableCustomers] = useState([]);
   const filtered_customers = useSelector((state) => state.filtered_customers);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (
@@ -127,6 +129,10 @@ const CustomerList = ({ showFilteredCustomers }) => {
     },
   ];
 
+  const onClickFunction = (mobile_no) => {
+    // props.setCustomer(productData[index]);
+    dispatch(CustomerOrderHistory(1, mobile_no));
+  };
   function rankFormatter(cell, row, rowIndex, formatExtraData) {
     if (row.action === "search") return "";
     return (
@@ -139,11 +145,50 @@ const CustomerList = ({ showFilteredCustomers }) => {
       >
         <Link
           exact="true"
-          to="#"
-          onClick={(e) => e.preventDefault()}
+          to="/customer/individual"
+          onClick={(e) => {
+            if (!row.mobile_no) {
+              e.preventDefault();
+              toast.error(`No Contact Available`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            } else {
+              onClickFunction(row.mobile_no);
+            }
+          }}
           className="btn btn-sm btn-warning"
         >
           View
+        </Link>
+        <Link
+          exact="true"
+          to={`/customer/editCustomer/${row.mobile_no}`}
+          onClick={(e) => {
+            if (!row.mobile_no) {
+              e.preventDefault();
+              toast.error(`No Contact Available`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+          }}
+          className="btn btn-sm btn-warning "
+          style={{ marginLeft: "0.6rem" }}
+        >
+          Edit
         </Link>
       </div>
     );

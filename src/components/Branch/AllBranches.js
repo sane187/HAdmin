@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
   PaginationProvider,
@@ -12,14 +12,17 @@ import ToolkitProvider, {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getSingleBranch } from "../../store/actionCreators/Branch/BranchAction";
+import { deleteFranchise } from "../../store/actionCreators/Franchise/AddNewFranchiseAction";
 import Unauthorized from "./../unauthorized";
+import EditFranchiseModal from "./EditFranchise";
 
 const AllBranches = (props) => {
   const productData = useSelector((state) => state.franchise);
+  const [currentFranchiseData, setCurrentFranchiseData] = useState({});
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const onClickFunction = (row) => {
     props.setCurrFranchise(row);
-    dispatch(getSingleBranch(row.branches[0].branch_id));
   };
 
   function rankFormatter(cell, row, rowIndex, formatExtraData) {
@@ -33,12 +36,40 @@ const AllBranches = (props) => {
       >
         <Link
           exact="true"
-          to="/branch/Franchise"
+          to={`/branch/Franchise/${row.franchise_id}`}
           onClick={() => onClickFunction(row)}
           className="btn btn-sm btn-warning"
         >
           View
         </Link>
+        <Button
+          exact="true"
+          to="/branch/Franchise"
+          onClick={() => {
+            setCurrentFranchiseData({ ...row });
+            setShowModal(true);
+          }}
+          className="btn btn-sm btn-warning"
+          style={{ marginLeft: "0.6rem" }}
+        >
+          Edit
+        </Button>
+        <Button
+          exact="true"
+          to="/branch/Franchise"
+          onClick={() => {
+            const check = prompt(
+              "Are you sure you want to delete this franchise ? Type yes to continue."
+            );
+            if (check === "yes") {
+              dispatch(deleteFranchise(row.franchise_id));
+            }
+          }}
+          className="btn btn-sm btn-danger"
+          style={{ marginLeft: "0.6rem" }}
+        >
+          Delete
+        </Button>
       </div>
     );
   }
@@ -184,6 +215,11 @@ const AllBranches = (props) => {
               </form>
             </div>
           </Row>
+          <EditFranchiseModal
+            show={showModal}
+            close={() => setShowModal(false)}
+            data={currentFranchiseData}
+          />
         </Container>
       </React.Fragment>
     );

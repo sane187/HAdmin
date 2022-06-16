@@ -12,6 +12,7 @@ const AddNewFranchise = (props) => {
   });
   const dispatch = useDispatch();
   const onSubmit = (e) => {
+    e.preventDefault();
     dispatch(
       addNewFranch(
         franchise.franchiseName,
@@ -19,7 +20,6 @@ const AddNewFranchise = (props) => {
         franchise.BranchNum
       )
     );
-    e.preventDefault();
   };
   if (props.editPermission)
     return (

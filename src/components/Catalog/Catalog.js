@@ -89,10 +89,10 @@ const Catalog = (props) => {
             <IndividualCat
               sideToggle={props.sideToggle}
               currentCategory={currentCategory}
+              viewPermission={viewPermission}
+              editPermission={editPermission}
             />
           }
-          viewPermission={viewPermission}
-          editPermission={editPermission}
         />
       </Routes>
     </React.Fragment>

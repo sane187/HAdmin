@@ -15,16 +15,35 @@ import {
   setCustomerPagination,
 } from "../../store/actionCreators/Customers/CustomerAction";
 import Unauthorized from "./../unauthorized";
+import EditCustomer from "./EditCustomer";
 function Customer(props) {
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login);
+  const branch = useSelector((state) => state.branch);
   const [viewPermission, setViewPermission] = useState(false);
   const [editPermission, setEditPermission] = useState(false);
+  const [branchObj, setBranchObj] = useState({});
+  const [branchArray, setBranchArray] = useState([]);
+
+  const convertArrayToObj = () => {
+    if (branch.data && branch.data.status === "success") {
+      const branches = {};
+      branch.data.data.forEach((e) => {
+        branches[e.branch_id] = e.branch_name;
+      });
+      setBranchObj(branches);
+      setBranchArray(branch.data.data);
+    }
+  };
   useEffect(() => {
     dispatch(clearDashBoard());
     dispatch(setCustomerPagination(1));
-    editPermissions();
   }, []);
+
+  useEffect(() => {
+    editPermissions();
+    convertArrayToObj();
+  }, [branch, login]);
   const editPermissions = () => {
     if (login && login.login.status === "success") {
       const { admin_permissions } = login.login.data;
@@ -68,6 +87,18 @@ function Customer(props) {
                 editPermission={editPermission}
                 viewPermission={viewPermission}
                 sideToggle={props.sideToggle}
+              />
+            }
+          />
+          <Route
+            path="/editCustomer/:customer_no"
+            element={
+              <EditCustomer
+                editPermission={editPermission}
+                viewPermission={viewPermission}
+                sideToggle={props.sideToggle}
+                branchObj={branchObj}
+                branchArray={branchArray}
               />
             }
           />
