@@ -53,7 +53,8 @@ const IndividFranchise = (props) => {
     setBranchArray(single_franchise.branches);
   }, single_franchise);
   useEffect(() => {
-    dispatch(getSingleBranch(currentFilter.branch.branch_id));
+    if (currentFilter.branch.branch_id)
+      dispatch(getSingleBranch(currentFilter.branch.branch_id));
   }, [currentFilter]);
 
   const BranchDrop = () => {
@@ -68,7 +69,7 @@ const IndividFranchise = (props) => {
       );
     });
   };
-  console.log(props);
+
   const handleBranchChange = (e) => {
     let item = JSON.parse(e.target.value);
     setCurrentFilters({
