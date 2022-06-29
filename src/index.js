@@ -23,7 +23,7 @@ if (serializedState === null) return undefined;
 }
 const presistedState = loadFromLocalStorage();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store =createStore(rootReducer,presistedState,composeEnhancers(applyMiddleware(thunk)))
+const store = createStore(rootReducer,presistedState,composeEnhancers(applyMiddleware(thunk)))
 store.subscribe(() => saveToLocalStorage(store.getState()));
 ReactDOM.render(
 

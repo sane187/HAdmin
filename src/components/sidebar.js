@@ -8,6 +8,10 @@ import { RiBuilding2Fill } from "react-icons/ri";
 import { RiAdminFill } from "react-icons/ri";
 import { ImUserTie } from "react-icons/im";
 import { FaClipboardList } from "react-icons/fa";
+import { IoFastFood } from "react-icons/io5";
+import { HiUserGroup } from "react-icons/hi";
+
+
 import {
   ProSidebar,
   SidebarHeader,
@@ -81,7 +85,7 @@ const Sidebar = (props) => {
   };
 
   function openChange(name) {
-    for (var i = 1; i < 7; i++) {
+    for (var i = 1; i < 10; i++) {
       if (name === `open${i}`) {
         dispatch(setSideToggle(`open${i}`, true));
       } else {
@@ -182,6 +186,10 @@ const Sidebar = (props) => {
                   <NavLink to="/catalog/" />
                 </MenuItem>
                 <MenuItem>
+                  All Products
+                  <NavLink to="/catalog/AllProducts" />
+                </MenuItem>
+                <MenuItem>
                   Add Category
                   <NavLink to="/catalog/AddCategory" />
                 </MenuItem>
@@ -217,7 +225,7 @@ const Sidebar = (props) => {
                 open={open.open6}
                 onOpenChange={() => openChange("open6")}
                 title="Orders"
-                icon={<RiBuilding2Fill />}
+                icon={<IoFastFood />}
               >
                 <MenuItem>
                   All Orders
@@ -228,7 +236,7 @@ const Sidebar = (props) => {
                 open={open.open7}
                 onOpenChange={() => openChange("open7")}
                 title="Groups"
-                icon={<RiBuilding2Fill />}
+                icon={<HiUserGroup />}
               >
                 <MenuItem>
                   All Groups
@@ -239,7 +247,7 @@ const Sidebar = (props) => {
                 open={open.open8}
                 onOpenChange={() => openChange("open8")}
                 title="Coupons"
-                icon={<RiBuilding2Fill />}
+                icon={<IoFastFood />}
               >
                 <MenuItem>
                   All Coupons

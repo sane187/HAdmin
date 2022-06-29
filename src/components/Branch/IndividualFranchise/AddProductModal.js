@@ -68,7 +68,7 @@ const AddProductModal = ({ show, close, data }) => {
         <form onSubmit={onSubmitForm}>
           <Row>
             <div className="mb-2">
-              <label>Poduct</label>
+              <label>Product</label>
               <Select
                 required
                 options={products.data.data.map((p) => ({

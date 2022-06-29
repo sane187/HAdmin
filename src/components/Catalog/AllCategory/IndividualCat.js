@@ -8,24 +8,31 @@ import {
   Row,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { get_category_branches } from "../../../store/actionCreators/Catalog/Catalog";
+import { get_category_branches,get_product_branch} from "../../../store/actionCreators/Catalog/Catalog";
 import NoData from "../../NoData";
 import Unauthorized from "../../unauthorized";
 import BigCard from "./BigCard";
 
 const IndividualCat = (props) => {
-  const Branches = useSelector((state) => state.getBranchInCat);
-  const CategoryData = useSelector((state) => state.getCatByBranch);
-  const [currbranch, setCurrBranch] = useState(["Branch"]);
   const dispatch = useDispatch();
+  const Branches = useSelector((state) => state.getBranchInCat);
+  const jj = useSelector((state) => state.getCurrentCat);
+  const branch = useSelector((state) => state.getCurrentBranch);
+  const [currbranch, setCurrBranch] = useState(branch);
+  const [selected,setSelected]=useState(+false);
+  let CategoryData = useSelector((state) => state.getCatByBranch);
+  
+  
+  
   const displayBranches = () => {
+    
     if (Branches.data) {
       return Branches.data.map((item, index) => {
         return (
           <Dropdown.Item
             key={item.branch_id}
             eventKey={`["${item.branch.branch_name}","${item.branch_id}"]`}
-          >
+          > 
             {" "}
             {item.branch.branch_name}
           </Dropdown.Item>
@@ -33,21 +40,45 @@ const IndividualCat = (props) => {
       });
     }
   };
+
+  console.log(CategoryData)
+
+  
+  
+   
   useEffect(() => {
-    if (currbranch[0] !== "Branch") {
+    dispatch(
+      get_product_branch(
+      jj.category_list_id));
+      if(currbranch.branch){
+        dispatch(
+          get_category_branches(
+            jj.category_list_id,
+            currbranch.branch_id
+          )
+        );
+      }
+     
+     else{
       dispatch(
         get_category_branches(
-          props.currentCategory.category_list_id,
+          jj.category_list_id,
           currbranch[1]
         )
       );
-    }
+        }
+        
+           
   }, [currbranch]);
-  console.log(props.currentCategory);
+  
+
   const handleSelectB = (e) => {
     const item = JSON.parse(e);
+    setSelected(+true)
+
     setCurrBranch([item[0], item[1]]);
   };
+  
   const BigCard1 = () => {
     if (CategoryData.status === "success") {
       return CategoryData.data.map((item, index) => {
@@ -57,10 +88,11 @@ const IndividualCat = (props) => {
   };
   const main = () => {
     if (props.viewPermission) {
+      if(CategoryData){
+
       if (
-        CategoryData &&
-        Branches.data &&
-        props.currentCategory.category_name
+        CategoryData.data.length>0 && 
+        Branches.data && branch
       ) {
         return (
           <Container
@@ -80,7 +112,7 @@ const IndividualCat = (props) => {
                       <div className="d-flex">
                         <DropdownButton
                           variant="light"
-                          title={currbranch[0]}
+                          title={selected===0?currbranch.branch.branch_name:currbranch[0]}
                           id="dropdown-menu-align-right"
                           onSelect={handleSelectB}
                         >
@@ -101,8 +133,8 @@ const IndividualCat = (props) => {
                   <Card.Body className="">
                     <h5>
                       <b>
-                        {props.currentCategory.category_name} category in{" "}
-                        {currbranch[0]}
+                        {jj.category_name} category in{" "}
+                        {selected==0? currbranch.branch.branch_name:currbranch[0]}
                       </b>
                     </h5>
                   </Card.Body>
@@ -112,19 +144,35 @@ const IndividualCat = (props) => {
             <Row>{BigCard1()}</Row>
           </Container>
         );
-      } else {
+      } 
+
+      else {
         return (
           <Container
             fluid
             className={props.sideToggle === true ? "closeDash" : "openDash"}
             style={{ paddingTop: "95px", backgroundColor: "#F1F5F7" }}
           >
-            <NoData data="No Category selected" />
+            <NoData data="Not Available Currently" />
           </Container>
         );
       }
+
     }
-    return <Unauthorized />;
+    else {
+      return (
+        <Container
+          fluid
+          className={props.sideToggle === true ? "closeDash" : "openDash"}
+          style={{ paddingTop: "95px", backgroundColor: "#F1F5F7" }}
+        >
+          <NoData data="Not Available Currently" />
+        </Container>
+      );
+    }
+   
+    }
+    
   };
   return <>{main()}</>;
 };

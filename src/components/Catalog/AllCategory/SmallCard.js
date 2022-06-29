@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
-import { Card, Col, Modal, Row } from 'react-bootstrap';
+import { Card, Col, Modal, Row,Button } from 'react-bootstrap';
+import {deleteProductCat} from "../../../store/actionCreators/Catalog/Catalog";
+import { useDispatch } from 'react-redux';
+
 const SmallCard = ({item,index}) => {
           // MOdal popup vars
           const [show, setShow] = useState(false);
           const handleClose = () => setShow(false);
           const handleShow = () => setShow(true);
+          const dispatch=useDispatch();
           // MOdal popup vars end
+          
       return (
           <Col lg={2} md={6} sm={6} xs={12} className="mb-4">
               <Card onClick={handleShow} className="smallCard" style={{ width: '100%' }}>
                   <Card.Body>
                       <Card.Img width="150px" height="150px" variant="top" src={item.product_list.card_img} />
-                      <Card.Title>{item.product_list.product_name}</Card.Title>
-  
+                      <div className="d-flex mt-2 ">
+            <Card.Title onClick={handleShow}>
+              {item.product_list.product_name}
+            </Card.Title>
+            <div className="ml-auto" style={{ marginLeft: "auto" }}>
+              <Button
+                className="btn btn-danger btn-sm py-0"
+                onClick={() =>dispatch(deleteProductCat(item.product_id))}
+              >
+                X
+              </Button>
+            </div>
+          </div>
                       {item.product_list.food_type === "Veg" ? <div className='veg'></div> : <div className='nonVeg'></div>}
                   </Card.Body>
               </Card>

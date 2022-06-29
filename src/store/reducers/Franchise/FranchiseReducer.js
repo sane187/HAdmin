@@ -1,4 +1,5 @@
 const FranchiseReducer = (state = "", action) => {
+  
   switch (action.type) {
     case "ADD_FRANCHISE":
       return state;
@@ -10,9 +11,7 @@ const FranchiseReducer = (state = "", action) => {
         data: {
           ...state.data,
           data: state.data.data.map((fr) =>
-            fr.franchise_id === action.franchise.franchise_id
-              ? action.franchise
-              : fr
+            fr.franchise_id === action.franchise.franchise_id ? action.franchise: fr
           ),
         },
       };

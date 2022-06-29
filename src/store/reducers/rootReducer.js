@@ -7,6 +7,10 @@ import {
   CategoryReducer,
   get_category_branchesReducer,
   get_product_branchReducer,
+  UpdateReducer,
+  AddProductToCat,
+  GET_CURRENT_CAT,
+  GET_CURRENT_BRANCH,DELETE__PRODUCT,UPDATE__PRODUCT
 } from "./Catalog/getProductsRed";
 import SidebarReducer from "./sidebarReducer";
 import {
@@ -116,5 +120,11 @@ const rootReducer = combineReducers({
   // CATALOG
   getBranchInCat: get_category_branchesReducer,
   getCatByBranch: get_product_branchReducer,
+  singleCategory:UpdateReducer,
+  AddProductToCat:AddProductToCat,
+  getCurrentCat:GET_CURRENT_CAT,
+  getCurrentBranch:GET_CURRENT_BRANCH,
+  delete_Product:DELETE__PRODUCT,
+  update_Product:UPDATE__PRODUCT
 });
 export default rootReducer;

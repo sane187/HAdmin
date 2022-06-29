@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+
 export const getAllFranchise = () => {
   return (dispatch, getState) => {
     axios
@@ -117,6 +118,7 @@ export const updateFranchise = (franchise) => {
       )
       .then((res) => {
         if (res.data.status === "success") {
+          
           dispatch({
             type: "UPDATE_FRANCHISE",
             franchise,
@@ -131,6 +133,7 @@ export const updateFranchise = (franchise) => {
             progress: undefined,
             theme: "colored",
           });
+          
         } else {
           toast.error(`Failure`, {
             position: "top-right",

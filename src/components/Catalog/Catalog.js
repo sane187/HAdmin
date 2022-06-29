@@ -8,13 +8,12 @@ import AddNewCatMain from "./AddNewCategory/AddNewCatMain";
 import AddNewFoodMain from "./AddNewFoodItem/AddNewFoodMain";
 import AddAddons from "./AddAddons/AddAddons";
 import AllCategory from "./AllCategory/AllCategory";
+import AllProducts from "./AllProducts/AllProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { get_category_branches } from "../../store/actionCreators/Catalog/Catalog";
 import IndividualCat from "./AllCategory/IndividualCat";
 const Catalog = (props) => {
   const [currentCategory, setCategory] = useState({});
-  const Branches = useSelector((state) => state.getBranchInCat);
-  const dispatch = useDispatch();
   const login = useSelector((state) => state.login);
   const [viewPermission, setViewPermission] = useState(false);
   const [editPermission, setEditPermission] = useState(false);
@@ -46,6 +45,17 @@ const Catalog = (props) => {
           path="/"
           element={
             <AllCategory
+              sideToggle={props.sideToggle}
+              setCategory={setCategory}
+              viewPermission={viewPermission}
+              editPermission={editPermission}
+            />
+          }
+        />
+         <Route
+          path="/AllProducts"
+          element={
+            <AllProducts
               sideToggle={props.sideToggle}
               setCategory={setCategory}
               viewPermission={viewPermission}

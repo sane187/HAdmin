@@ -12,8 +12,8 @@ const Unauthorized = () => {
       </Row>
       <Row>
         <div>
-          You are not authorized to view this module. Ask for view/edit
-          permissions from respective owners.
+        You are not authorized to view this module. Ask for view/edit
+        permissions from respective owners.
         </div>
       </Row>
     </Container>

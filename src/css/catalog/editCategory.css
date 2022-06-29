@@ -1,0 +1,26 @@
+.edit-cat-cont{
+ width:22vw;
+ height: 28vh;
+ overflow:hidden;
+ position: relative;
+border-radius: 5px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    background-color: rgba(128, 128, 128, 0.731);
+    color: white;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    padding:0px 7px 3px 9px;
+    font-size: 1.3rem;
+}
+
+label{
+    margin-bottom: 3px;
+}

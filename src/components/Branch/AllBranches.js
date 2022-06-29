@@ -16,6 +16,7 @@ import { deleteFranchise } from "../../store/actionCreators/Franchise/AddNewFran
 import Unauthorized from "./../unauthorized";
 import EditFranchiseModal from "./EditFranchise";
 
+
 const AllBranches = (props) => {
   const productData = useSelector((state) => state.franchise);
   const [currentFranchiseData, setCurrentFranchiseData] = useState({});
@@ -26,6 +27,7 @@ const AllBranches = (props) => {
   };
 
   function rankFormatter(cell, row, rowIndex, formatExtraData) {
+    
     return (
       <div
         style={{
@@ -39,8 +41,7 @@ const AllBranches = (props) => {
           to={`/branch/Franchise/${row.franchise_id}`}
           onClick={() => onClickFunction(row)}
           className="btn btn-sm btn-warning"
-        >
-          View
+        >View
         </Link>
         <Button
           exact="true"

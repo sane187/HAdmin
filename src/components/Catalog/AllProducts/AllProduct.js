@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col, Container, Row,Button } from "react-bootstrap";
+import { Card, Col, Container, Row,Button,Modal } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
   PaginationProvider,
@@ -10,57 +10,47 @@ import ToolkitProvider, {
   Search,
 } from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { get_product_branch,currentCat,currentBranch,get_category_branches } from "../../../store/actionCreators/Catalog/Catalog";
 import Unauthorized from "../../unauthorized";
-import EditCategory from "./EditCategory";
+import EditProduct from "./EditProduct";
+import ProductDescModal from "./ProductDescModal";
 
-const AllCategory = (props) => {
-const Branches = useSelector((state) => state.getBranchInCat);
-  
-  const productData = useSelector((state) => state.categories);
-  const [currentCategory,setCurrentCategory]=useState({})
+
+const AllProducts = (props) => {
+
+  const productData = useSelector((state) => state.products);
+  const [currentProduct,setCurrentProduct]=useState({})
   const dispatch = useDispatch();
 
-  const onClickFunction = (row) => {
-      console.log(Branches)
-    if(row){ 
-      props.setCategory(row);
-    dispatch(get_product_branch(row.category_list_id));
-  dispatch(currentCat(row))
-  dispatch(currentBranch(Branches.data[0]))
-  dispatch(get_category_branches(row.category_list_id,Branches.data[0].branch_id))
-
-  }
-
-  };
-
+ 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
   const [showModal, setShowModal] = useState(false);
-  function getDateFromUTC(date) {
-    var d = new Date(date);
-    let dayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const monthArray = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+//   function getDateFromUTC(date) {
+//     var d = new Date(date);
+//     let dayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//     const monthArray = [
+//       "Jan",
+//       "Feb",
+//       "Mar",
+//       "Apr",
+//       "May",
+//       "Jun",
+//       "Jul",
+//       "Aug",
+//       "Sep",
+//       "Oct",
+//       "Nov",
+//       "Dec",
+//     ];
 
-    return `${dayArr[d.getDay()]} ${
-      monthArray[d.getMonth()]
-    } ${d.getHours()}:${d.getMinutes()} ${d.getFullYear()}`;
-  }
+//     return `${dayArr[d.getDay()]} ${
+//       monthArray[d.getMonth()]
+//     } ${d.getHours()}:${d.getMinutes()} ${d.getFullYear()}`;
+//   }
 
   function rankFormatter(cell, row, rowIndex, formatExtraData) {
-   
+ 
     return (
       <div
         style={{
@@ -70,21 +60,19 @@ const Branches = useSelector((state) => state.getBranchInCat);
         }}
       >
         <Button        
-          onClick={()=>{setCurrentCategory({...row});
-          setShowModal(true)}}
+          onClick={()=>{setCurrentProduct({...row});
+          setShowModal(true);}}
           className="btn btn-sm btn-warning me-2"
         >
           Edit
         </Button>
       
-        <Link
-          exact="true"
-          to="/catalog/Individual_category"
-          onClick={() => onClickFunction(row)}
+        <Button
           className="btn btn-sm btn-warning"
+          onClick={()=>{setCurrentProduct({...row}); setShow(true)}}
         >
           View
-        </Link>
+        </Button>
       </div>
     );
   }
@@ -94,13 +82,13 @@ const Branches = useSelector((state) => state.getBranchInCat);
 
   const columns = [
     {
-      dataField: "category_list_id",
-      text: "Category Id",
+      dataField: "product_list_id",
+      text: "Product Id",
       sort: false,
     },
     {
-      dataField: "category_name",
-      text: "Category Name",
+      dataField: "product_name",
+      text: "Product Name",
       sort: true,
     },
     {
@@ -109,10 +97,30 @@ const Branches = useSelector((state) => state.getBranchInCat);
       sort: false,
     },
     {
-      dataField: "createdAt",
-      text: "Created At ",
-      sort: true,
+      dataField: "sku",
+      text: "SKU",
+      sort: false,
     },
+    {
+        dataField:"price",
+        text: "Price",
+        sort: true,
+      }, 
+      {
+        dataField: "food_type",
+        text: "Food Type",
+        sort: false,
+      }, 
+      {
+        dataField: "product_type",
+        text: "Product Type",
+        sort: false,
+      },
+      {
+        dataField: "prepare_time",
+        text: "Prepare Time",
+        sort: true,
+      },
     {
       dataField: "view",
       text: "Actions",
@@ -154,7 +162,7 @@ const Branches = useSelector((state) => state.getBranchInCat);
                         <Card>
                           <Card.Body>
                             <Card.Title className="h4 mb-2 ">
-                              Category Datatable{" "}
+                             All Products Datatable{" "}
                             </Card.Title>
 
                             <PaginationProvider
@@ -202,6 +210,7 @@ const Branches = useSelector((state) => state.getBranchInCat);
                                               }
                                               {...toolkitProps.baseProps}
                                               {...paginationTableProps}
+                                              
                                             />
                                           </div>
                                         </Col>
@@ -234,9 +243,11 @@ const Branches = useSelector((state) => state.getBranchInCat);
                   </form>
                 </div>
               </Row>
-              <EditCategory show={showModal}
-            close={() => setShowModal(false)} data={currentCategory}/>
+              <EditProduct show={showModal}
+            close={() => setShowModal(false)} data={currentProduct}/>
+            <ProductDescModal show={show} item={currentProduct} handleClose={handleClose} />
             </Container>
+            
           );
         }
       }
@@ -246,4 +257,4 @@ const Branches = useSelector((state) => state.getBranchInCat);
   return <React.Fragment>{main()}</React.Fragment>;
 };
 
-export default AllCategory;
+export default AllProducts;

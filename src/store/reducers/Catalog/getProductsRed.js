@@ -8,6 +8,7 @@ export const ProductsReducer = (state = "", action) => {
 }
 
 export const CategoryReducer = (state = "", action) => {
+   
     switch (action.type) {
         case "GET_ALL_CATEGORIES":
             return action.categories;
@@ -44,4 +45,48 @@ export const AddonsReducer = (state = "", action) => {
         default:
             return state;
     }
+}
+
+export const UpdateReducer = (state="", action) => { 
+     switch (action.type) {
+case "UPDATE_CATEGORY": return state
+    default: return state
+    }
+}
+
+
+export const AddProductToCat = (state="", action) => { 
+    switch (action.type) {
+case "ADD_PRODUCT": return action.payload
+   default: return state
+   }
+}
+
+export const GET_CURRENT_CAT=(state="", action) => { 
+
+    switch (action.type) {
+        case "CURRENT_CAT": return action.payload
+           default: return state
+           }
+}
+export const GET_CURRENT_BRANCH=(state="", action) => { 
+
+    switch (action.type) {
+        case "get_current_branch": return action.payload
+           default: return state
+           }
+}
+export const DELETE__PRODUCT=(state="", action) => { 
+
+    switch (action.type) {
+        case "DELETE_PRODUCT": return state
+           default: return state
+           }
+}
+export const UPDATE__PRODUCT=(state="", action) => { 
+
+    switch (action.type) {
+        case "UPDATE_PRODUCT": return state
+           default: return state
+           }
 }
