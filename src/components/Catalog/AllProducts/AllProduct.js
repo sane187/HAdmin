@@ -41,7 +41,7 @@ const AllProducts = (props) => {
 //       "Sep",
 //       "Oct",
 //       "Nov",
-//       "Dec",
+//       "Deci",
 //     ];
 
 //     return `${dayArr[d.getDay()]} ${
