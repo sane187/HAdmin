@@ -1,0 +1,12 @@
+.item-select button{
+    width: 100%;
+}
+
+.req-header-text,.dont {
+  
+    font-family: Nunito,sans-serif;
+}
+.req-header-text,.dont .card-title{
+    text-transform: capitalize;
+
+}

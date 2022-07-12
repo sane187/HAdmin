@@ -1,0 +1,13 @@
+.categorySelect button{
+    padding: 10px;
+}
+#catDropdown > div > div:nth-child(2){
+    z-index: 1 !important;
+    position: relative;
+}
+#catDropdown > div > div:nth-child(3){
+    z-index: -1 !important;
+}
+#catDropdown > div > div:nth-child(2) > div > div:nth-child(1){
+    margin: 0 !important;
+}

@@ -1,0 +1,48 @@
+.font-size-14{
+ font-family: Nunito,sans-serif;
+ font-size: 14px;
+ color:#505D69;
+}
+.flex-1 h4{
+    font-size: calc(1.26rem + 0.12vw);
+}
+.flex-1 {
+    flex: 1 1;
+}
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #74788d !important;
+}
+.border-top{
+    border-top: 1px solid #eff2f7 !important;
+}
+
+
+
+/* RevenueAnalytics.css */
+.revenue{
+    font-size: 15px;
+    color: #343a40;
+}
+.me-2{
+    font-size: 1rem;
+
+}
+.ra-14{
+    font-size: 14.4px;
+}
+.graph-buttons button:focus{
+    background-color: var(--primary-color-light) !important;
+    color:var(--primary-color);
+}
+/* doughnut.js */
+.dougnhut-text{
+font-size: 12px;
+font-family: Nunito,sans-serif;
+color:#505d69;
+white-space: nowrap;
+
+}
+.icon-color{
+    color:#0D6EFD !important;
+}

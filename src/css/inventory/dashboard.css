@@ -1,0 +1,45 @@
+.inventory-dash-head{
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    padding:15px 10px 15px 13px !important;
+}
+.inv-drop-dash select{
+    font-family: Nunito,sans-serif;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.dash-inv-card .card-title{
+    font-family: 'Inter',sans-serif;
+    font-size: 0.9rem;
+}
+.name-icon {
+    width: 2vw;
+}
+.name-icon svg{
+    color:red;
+    font-size: 1.2rem;
+    animation: move linear 1.8s infinite;
+}
+.table-dash-inv{
+    font-family: Nunito,sans-serif;
+}
+@keyframes move{
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+        transform: translateY(6px);
+        opacity: 0.2;
+    }
+
+  }
+
+@media screen and (max-width:468px){
+    .table-dash-inv h3{
+        font-size: 1.5rem;
+    }
+}

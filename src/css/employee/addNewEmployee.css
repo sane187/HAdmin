@@ -1,0 +1,31 @@
+.form-container{
+    width:95%;
+    margin-top: 12px;
+}
+.form-head{
+    background-color: rgba(0,0,0,0.8);
+    color:white !important;
+    text-align: left;
+    font-size: 18px;
+    width: 100%;
+    padding:18px 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+}
+.form-body{
+    background-color: white;
+    padding: 30px;
+    color:#666;
+}
+.form-body input{
+    border:1px solid rgb(222, 215, 215) ;
+    box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
+}
+.catBig .form-control{
+    padding: 0;
+}
+.bigCardIm .card-img-top{
+    max-height: 200px;
+    height:100%;
+}

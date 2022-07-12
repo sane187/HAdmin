@@ -1,0 +1,155 @@
+.fullscreen{
+    font-family:'Inter' !important;
+    background-color: #F1F5F7 !important;
+    overflow: auto;
+}
+.card{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%) !important;
+    border-width: 0;
+} 
+@media screen and (max-width:768px) { 
+.card{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%) !important;
+    margin-bottom: 24px;
+}  
+}
+:root {
+  --primaryColor: #664d03;
+  --primaryDarkColor: #473603;
+  --primaryLightColor25: rgba(102, 77, 3, .25);
+  --primaryLightColorInput: rgba(102, 77, 3, .12);
+  --primaryLightColor30: rgba(102, 77, 3, .3);
+  --bgColor: #f4f4f4;
+  --bgColor2: #ECF0F1;
+  --bgOverlayColor: #292626;
+  --mutedColor: #7B7D7D;
+  --textColor: #17202A;
+  --textMutedColor: #7B7D7D;
+  --whiteColor: #fff;
+
+  
+}
+button:focus{
+    box-shadow: 0 0 0 0 !important;
+  
+  }
+  input:focus{
+    box-shadow: 0 0 0 0 !important;
+  
+  }
+  select:focus{
+    box-shadow: 0 0 0 0 !important;
+  
+  }
+  
+*::-webkit-scrollbar{
+    width: 2px !important;
+  }
+   
+*::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 5px !important;
+  }
+   
+*::-webkit-scrollbar-thumb  {
+    background-color: #1CBB8C !important;
+    outline: 1px solid white !important;
+    border-radius: 10px !important;
+  }
+
+  
+  /* login page */
+  .authentication-bg {
+    position: relative;
+    background-image: url('./assets/images/authentication-bg.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: 50%;
+  }
+  .login-card{
+    height: 100vh;
+    background: white;
+    z-index: 1111 !important;
+}
+
+
+.authentication-bg .bg-overlay {
+    background-color: var(--bg-overlay-color);
+}
+
+.bg-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    opacity: .7;
+    background-color: var(--black-color);
+}
+
+.login-form{
+    width: 90%;
+}
+
+.login-form input{
+    border-radius: var(--border-radius) !important;
+}
+
+.login-form label{
+    color:var(--gray-color) !important;
+}
+.login-card .form-check input{
+  border-radius: 50% !important;
+  width: 20px; height: 20px;
+}
+.login-form .button-primary{
+    background:var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn-login{
+  border-radius: 10px !important;
+  width: 90%;
+  background-color: #664d03;
+  color: white;
+}
+.veg{
+  position: absolute;
+  top:10px;
+  left:10px;
+  content: "";
+  display: inline-block;
+  width:20px;
+  height:20px;
+  background-color: #0a7b3a;
+  border-radius: 50%;
+}
+.nonVeg{
+  position: absolute;
+  top:10px;
+  left:10px;
+  content: "";
+  display: inline-block;
+  width:20px;
+  height:20px;
+  background-color: #ff0000;
+  border-radius: 50%;
+
+}
+.smallCard{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important; 
+}
+.edit-card-btn{
+  position: absolute;
+  top:10px;
+  right:10px;
+  content: "";
+  background-color: #ff0000;
+  z-index: 3;
+  padding: 2px 4px !important;
+  
+  
+}
